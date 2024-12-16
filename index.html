@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Contador texto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+
+  <body class="w-100 p-3 mw-100">
+    <p class="fs-4">La idea de esta aplicación es a partir de un texto obtener los numero y realizar la suma total</p>
+    <section class="w-100 p-3 d-flex align-items-cente">
+      <textarea class="w-75 fs-6 p-3" style="height: 250px; overflow: scroll;"
+        id="input-textarea"> Copia aqui el texto donde quieres obtener los numero y sumar</textarea>
+      <button id="button" class="btn btn-primary m-4 text-bold"> <b>Sumar </b></button>
+    </section>
+    <b>
+      <span id="result" class="fs-1"> </span>
+    </b>
+    <p id="text-result"></p>
+    <script>
+      const button = document.getElementById('button')
+      const input_textare = document.getElementById('input-textarea')
+      const text_result = document.getElementById('text-result')
+      const result = document.getElementById('result')
+
+      button.addEventListener('click', (e) => {
+        const text = input_textare.value
+        const list_nums = text.match(/\d+/g)
+
+        let text_outerHTML = text
+
+        let set_nums = [... new Set(list_nums)].sort((a, b) => b - a)
+        console.log(set_nums)
+        set_nums.forEach(num => {
+          text_outerHTML = text_outerHTML.replaceAll(num, `<b class="bg-warning">${num}</b>`)
+        })
+        console.log(text_outerHTML)
+        text_result.innerHTML = text_outerHTML
+        result.innerHTML = list_nums.reduce((acc, act) => acc += parseInt(act), 0)
+
+      })
+    </script>
+  </body>
+
+</html>
