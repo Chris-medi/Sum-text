@@ -19,6 +19,7 @@
     <b>
       <span id="result" class="fs-1"> </span>
     </b>
+    <p id="list-nums"></p>
     <p id="text-result"></p>
     <script>
       const button = document.getElementById('button')
@@ -39,6 +40,7 @@
         })
         console.log(text_outerHTML)
         text_result.innerHTML = text_outerHTML
+        document.getElementById('list-nums').innerHTML = '<b class=""> Lista de numero encontrados: <br> </b>'+ list_nums.join(', ')
         result.innerHTML = list_nums.reduce((acc, act) => acc += parseInt(act), 0)
 
       })
